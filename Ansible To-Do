@@ -1,0 +1,7 @@
+#General info: This to-do list is by no means comprehensive, and will change as the environment is added to. 
+
+Goals:
+- Add more hosts to lab
+- Roll out scoped configuration management of switch hosts (i.e configure pillars of switch configuration using Ansible.)
+- Render a Jinja2 template on switch hosts. 
+- Use Jinja2 template to enforce configuration management. 
