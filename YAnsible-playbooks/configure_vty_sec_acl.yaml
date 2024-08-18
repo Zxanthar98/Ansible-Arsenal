@@ -1,7 +1,7 @@
 ---
 - name: Configure LFN standard VTY-Sec ACL
 
-  hosts: LAB
+  hosts: switches
 
   gather_facts: no
 

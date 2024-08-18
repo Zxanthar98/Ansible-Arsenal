@@ -1,7 +1,7 @@
 ---
 - name: Create/ enforce VTY-Sec ACL and apply to the VTY lines
 
-  hosts: LAB
+  hosts: switches
 
   gather_facts: no
 

@@ -1,7 +1,7 @@
 ---
-- name: Simple playbook to pull a backup from switch infra and store locally on VM
+- name: Simple playbook to pull a backup from switch infra and store locally
 
-  hosts: LAB
+  hosts: switches
 
   gather_facts: no
 
@@ -15,12 +15,12 @@
 
   tasks:
 
-#   - name: Save the running config
-#     cisco.ios.ios_config:
-#      save_when: always
+   - name: Save the running config
+     cisco.ios.ios_config:
+      save_when: changed
 
    - name: Take a backup of the running configuration from hosts
      cisco.ios.ios_config:
       backup: true
       backup_options:
-        dir_path: ../Config Backups/
+        dir_path: /etc/ansible/Config Backups/

@@ -1,7 +1,7 @@
 ---
 - name: Standard SW Provisioning playbook
 
-  hosts: LAB
+  hosts: switches
 
   gather_facts: no
 

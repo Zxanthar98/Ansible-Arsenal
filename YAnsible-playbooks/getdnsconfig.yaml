@@ -1,7 +1,7 @@
 ---
 - name: Gather the DNS configuration on LFN switches
 
-  hosts: LAB
+  hosts: switches
 
   gather_facts: no
 

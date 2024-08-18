@@ -1,7 +1,7 @@
 ---
 - name: Get IOS version
 
-  hosts: LAB
+  hosts: switches
 
   gather_facts: yes
   
@@ -14,20 +14,8 @@
 #      private: yes
 
   tasks:
-  
-    - name: Get the IOS version
-      debug:
-        var: ansible_net_version
-        
-#    - name: Get the switch platform (9200, 2960 etc..)
-#      debug:
-#        var: "{{ ansible_facts['net_model'] }}"
 
-#    - name: debug gather_facts
-#      debug:
-#        var: ansible_facts
-
-    - name: Save output to local directory
+    - name: Gather the hostname, hardware platform, ios, and send them to a local .txt file for review
       local_action:
         module: lineinfile
         dest: "../Playbook Outputs/IOS_version_inventory.txt"

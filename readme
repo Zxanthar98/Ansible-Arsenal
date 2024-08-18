@@ -1,8 +1,6 @@
 # General Info
 This repo is meant for Ansible in the context of network automation using mainly Cisco ios as the collection, however Meraki could be used.
 
-To publish, use git push 
-
 
 # Pro-tips
 To decrypt ansible vault files, use "--ask-vault-pass" when running a playbook. 
