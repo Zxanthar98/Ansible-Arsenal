@@ -1,4 +1,6 @@
 ---
-#Public DNS Servers for lab purposes
-Google: 8.8.8.8
-Trip1: 1.1.1.1
+#DNS and NTP data
+GOOGLE: 8.8.8.8
+CLOUD: 1.1.1.1
+domain_name: coffeenet.local
+

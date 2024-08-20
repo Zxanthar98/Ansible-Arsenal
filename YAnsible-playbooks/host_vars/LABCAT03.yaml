@@ -1,10 +1,10 @@
 ---
 #System wide data
-hostname: LABCAT01
+hostname: LABCAT03
 
 #L2 interfaces
-LAB_UPLINK: f0/24
-LAB_DOWNLINK: f0/23
+LAB_UPLINK: g1/0/24
+LAB_DOWNLINK: g1/0/23
 
 #ACL data
 ACL_LAN_Network: 192.168.10.0
