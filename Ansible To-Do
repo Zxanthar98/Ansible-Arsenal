@@ -2,6 +2,7 @@
 
 Goals:
 - Roll out scoped configuration management of switch hosts (i.e configure pillars of switch configuration using Ansible.)
+- Configure management of vlansm, and STP using Ansible. 
 - Figure out how to use Jinja2 for templatizing config.
 - Schedule playbooks using cron jobs.
 - Integrate with Netbox.
