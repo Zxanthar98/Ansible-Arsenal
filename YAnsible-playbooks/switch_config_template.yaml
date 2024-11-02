@@ -1,23 +1,27 @@
 ---
 - name: Standard SW Provisioning playbook
 
-  hosts: switches
-
   gather_facts: no
 
-#  vars_prompt:
+  vars_prompt:
+    - name: hosts 
+      prompt: "Which group should we run the playbook against?"
+      private: no
+      default: LAB
 #    - name: "ansible_user"
-#      prompt: "Enter the username"
+#      prompt: "Enter your username"
 #      private: no
 #    - name: "ansible_password"
-#      prompt: "Enter the password"
+#      prompt: "Enter your password"
 #      private: yes
+
+  hosts: "{{hosts}}"
 
   tasks:
 
    - name: Include host-specific variables
      include_vars:
-       file: "host_vars/{{ inventory_hostname }}.yaml"
+       file: "/etc/ansible/Playbooks/host_vars/{{ inventory_hostname }}.yaml"
 
    - name: Render a Jinja2 template onto an IOSxe device
      cisco.ios.ios_config:
@@ -25,4 +29,4 @@
        match: line
        backup: false
        backup_options:
-         dir_path: ../Config Backups/
+         dir_path: ./etc/ansible/Config Backups/

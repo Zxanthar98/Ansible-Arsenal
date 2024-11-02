@@ -1,5 +1,5 @@
 ---
-- name: Pulls a full backup of running-config
+- name: Rolls back configuration made in configureradiusauth.yaml
 
   gather_facts: no
 
@@ -19,12 +19,9 @@
 
   tasks:
 
-   - name: Take a backup of the running configuration from hosts and stores in local directory
-     cisco.ios.ios_config:
-      backup: true
-      backup_options:
-        dir_path: /etc/ansible/Config Backups/
-
-   - name: Save running to startup
-     cisco.ios.ios_config:
+  - name: Changes authentication method from remote using radius to use local authentication
+    cisco.ios.ios_config:
+      lines:
+        - aaa authorization exec default local
+        - aaa authentication login default local
       save_when: always

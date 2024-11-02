@@ -1,18 +1,37 @@
 ---
 - name: Gather the DNS configuration on LFN switches
 
-  hosts: switches
+  gather_facts: yes
 
-  gather_facts: no
+  vars_prompt:
+    - name: hosts 
+      prompt: "Which group should we run the playbook against?"
+      private: no
+      default: LAB
+    - name: "ansible_user"
+      prompt: "Enter your username"
+      private: no
+    - name: "ansible_password"
+      prompt: "Enter your password"
+      private: yes
+
+  hosts: "{{hosts}}"
 
   tasks:
 
-   - name: show the ip name-severs
+   - name: Registers the below command with the variable name_server_output
      cisco.ios.command:
       commands:
-        - sh run
+        - show ip name-server
      register: name_server_output
 
-   - name:
-     debug:
-      var: name_server_output
+   - name: Get only the standard output in position zero of the output
+     set_fact:
+       second_line: "{{ name_server_output.stdout_lines[0] }}"
+
+   - name: Save output to local directory
+     local_action:
+       module: lineinfile
+       dest: "/etc/ansible/Playbook Outputs/Name_Server_Config"
+       create: yes
+       line: "Hostname: {{ inventory_hostname }} | Name-Servers: {{ second_line }}\n"

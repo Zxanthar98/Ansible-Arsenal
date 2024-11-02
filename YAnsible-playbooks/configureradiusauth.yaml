@@ -1,0 +1,73 @@
+---
+- name: Deploy RADIUS auth
+
+  gather_facts: no
+
+  vars_prompt:
+    - name: hosts 
+      prompt: "Which group should we run the playbook against?"
+      private: no
+      default: LAB
+
+    - name: CAT_RADIUS_SECRET
+      prompt: "Please enter the catalyst radius secret"
+      private: yes
+
+    - name: aes_encryption_password
+      prompt: "Please enter the password used to encrypt keys in the running config"
+      private: yes
+    
+#   - name: "ansible_user"
+#      prompt: "Enter your username"
+#      private: no
+
+#    - name: "ansible_password"
+#      prompt: "Enter your password"
+#      private: yes
+
+  hosts: "{{hosts}}"
+
+  tasks:
+
+  - name: Include group vars
+    include_vars:
+      file: "/etc/ansible/Playbooks/group_vars/config_pillars.yaml"
+
+  - name: Configure aaa new-model
+    cisco.ios.ios_config:
+      lines:
+        - aaa new-model
+        - aaa session-id common
+
+  - name: Configure az1wusnps1
+    cisco.ios.ios_config:
+      lines:
+        - address ipv4 {{AZ1WUSNPS1_IP}} auth-port 1812 acct-port 1813
+        - retransmit 2
+        - pac key 0 {{CAT_RADIUS_SECRET}}
+      parents: radius server az1wusnps1
+
+  - name: Configure az2scusnps1
+    cisco.ios.ios_config:
+      lines:
+        - address ipv4 {{AZ2SCUSNPS1_IP}} auth-port 1812 acct-port 1813
+        - retransmit 2
+        - pac key 0 {{CAT_RADIUS_SECRET}}
+      parents: radius server az2scusnps1
+
+  - name: Configure aaa group
+    cisco.ios.ios_config:
+      lines:
+        - server name az1wusnps1
+        - server name az2scusnps1
+      parents: aaa group server radius az-radius
+
+  - name: Specify authentication and authorization methods and save config to startup
+    cisco.ios.ios_config:
+      lines:
+        - aaa authentication login default group az-radius local
+        - aaa authentication dot1x default group az-radius
+        - aaa authorization exec default group az-radius local
+        - aaa authorization network default group az-radius
+        - password encryption aes
+        - key config-key password-encrypt {{aes_encryption_password}}

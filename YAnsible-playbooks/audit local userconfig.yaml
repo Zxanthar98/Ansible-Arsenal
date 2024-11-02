@@ -1,0 +1,45 @@
+---
+- name: Get the locally significant user config on LFN switches
+
+  gather_facts: no
+
+  vars_prompt:
+    - name: hosts 
+      prompt: "Which group should we run the playbook against?"
+      private: no
+      default: LAB
+#    - name: "ansible_user"
+#      prompt: "Enter your username"
+#      private: no
+#    - name: "ansible_password"
+#      prompt: "Enter your password"
+#      private: yes
+
+  hosts: "{{hosts}}"
+
+  tasks:
+
+   - name: Registers the below command with the variable name_server_output
+     cisco.ios.command:
+      commands:
+        - show run | sec user
+     register: user_account
+     
+   - name: Get only the standard output in position zero of the output
+     set_fact:
+       second_line: "{{ user_account.stdout_lines[0] }}"
+
+   - name: Save the user account configuration to a local .txt file
+     local_action:
+       module: lineinfile
+       dest: "/etc/ansible/Playbook Outputs/localuserconfig.txt"
+       create: yes
+       line: "{{ inventory_hostname }}\n {{ second_line }}\n"
+
+   - name: Remove all users except admin and these listed users
+     cisco.ios.ios_user:
+      aggregate:
+        - name: #add username here#
+        - name: #add username here#
+        - name: #add username here#
+      purge: true

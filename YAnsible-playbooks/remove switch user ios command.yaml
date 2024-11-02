@@ -1,0 +1,31 @@
+---
+- name: Deletes a locally siginificant user account from IOS device
+
+  gather_facts: no
+
+  vars_prompt:
+    - name: hosts 
+      prompt: "Which group should we run the playbook against?"
+      private: no
+      default: LAB
+    - name: "ansible_user"
+      prompt: "Enter your username"
+      private: no
+    - name: "ansible_password"
+      prompt: "Enter your password"
+      private: yes
+    - name: useracct
+      prompt: "Which user account would you like to remove?"
+      private: no
+
+  hosts: "{{hosts}}"
+
+  tasks:
+
+  - name: Remove user account
+    cisco.ios.ios_command:
+      commands: 
+        - command: configure terminal
+        - command: no username "{{useracct}}"
+          prompt: "[confim]"
+          answer: "y"

@@ -1,26 +1,36 @@
 ---
-- name: Configures the DNS server, hostname and saves the configuration if changes were made
-
-  hosts: switches
+- name: Change LFN standard DNS servers on switching infrastructure
 
   gather_facts: no
 
+  vars_prompt:
+    - name: hosts 
+      prompt: "Which group should we run the playbook against?"
+      private: no
+      default: LAB
+#    - name: "ansible_user"
+#      prompt: "Enter your username"
+#      private: no
+#    - name: "ansible_password"
+#      prompt: "Enter your password"
+#      private: yes
+
+  hosts: "{{hosts}}"
+
   tasks:
 
-   - name: Include group variables
+   - name: Include group specific variables 
      include_vars:
-       file: "group_vars/config_pillars.yaml"
+       file: "/etc/ansible/Playbooks/group_vars/config_pillars.yaml"
 
-   - name: Configure Google and Cloudflare DNS servers on hosts
+   - name: Configure standard LFN DNS servers on spoke site switches
      cisco.ios.ios_system:
       name_servers:
-       - "{{ GOOGLE }}" 
-       - "{{ CLOUD }}"
-
-   - name: Enforce the hostname from the host_vars file
-     cisco.ios.ios_config: 
-       lines: hostname {{ hostname }}
+       - "{{ LFNDC04 }}"
+       - "{{ LFNDC03 }}" 
+       - "{{ AZ1WUSDC01 }}"
+       - "{{ AZ2SCUSDC01 }}"
      
-   - name: Save running to startup if the playbook made a change
+   - name: Save running to startup
      cisco.ios.ios_config:
-      save_when: changed
+      save_when: always

@@ -1,5 +1,5 @@
 ---
-- name: Pulls a full backup of running-config
+- name: Rollback configuration if errors
 
   gather_facts: no
 
@@ -18,13 +18,11 @@
   hosts: "{{hosts}}"
 
   tasks:
+    - name: Read the saved running config
+      slurp:
+        src: "/etc/ansible/Config Backups/{{ inventory_hostname }}_config.txt"
+      register: backup_config
 
-   - name: Take a backup of the running configuration from hosts and stores in local directory
-     cisco.ios.ios_config:
-      backup: true
-      backup_options:
-        dir_path: /etc/ansible/Config Backups/
-
-   - name: Save running to startup
-     cisco.ios.ios_config:
-      save_when: always
+    - name: Write the backup config to the device
+      ios_config:
+        lines: "{{ backup_config.content | b64decode | ('\n') }}"
