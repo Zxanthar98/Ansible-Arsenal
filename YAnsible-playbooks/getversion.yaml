@@ -1,14 +1,18 @@
 ---
 - name: Get IOS version
+
+  gather_facts: no
   
   vars_prompt:
     - name: hosts 
       prompt: "Which group should we run the playbook against?"
       private: no
       default: LAB
+
     - name: "ansible_user"
       prompt: "Enter your username"
       private: no
+
     - name: "ansible_password"
       prompt: "Enter your password"
       private: yes

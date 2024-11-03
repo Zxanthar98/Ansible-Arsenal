@@ -17,13 +17,13 @@
       prompt: "Please enter the password used to encrypt keys in the running config"
       private: yes
     
-#   - name: "ansible_user"
-#      prompt: "Enter your username"
-#      private: no
+    - name: "ansible_user"
+      prompt: "Enter your username"
+      private: no
 
-#    - name: "ansible_password"
-#      prompt: "Enter your password"
-#      private: yes
+    - name: "ansible_password"
+      prompt: "Enter your password"
+      private: yes
 
   hosts: "{{hosts}}"
 

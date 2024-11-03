@@ -8,12 +8,12 @@
       prompt: "Which group should we run the playbook against?"
       private: no
       default: LAB
-#    - name: "ansible_user"
-#      prompt: "Enter your username"
-#      private: no
-#    - name: "ansible_password"
-#      prompt: "Enter your password"
-#      private: yes
+    - name: "ansible_user"
+      prompt: "Enter your username"
+      private: no
+    - name: "ansible_password"
+      prompt: "Enter your password"
+      private: yes
 
   hosts: "{{hosts}}"
 
@@ -25,7 +25,7 @@
   
   - name: Include host specific variables
     include_vars:
-      file: "/etc/ansible/Playbooks/host_vars/core_site_switches/{{ inventory_hostname }}.yaml"
+      file: "/etc/ansible/Playbooks/host_vars/{{ hosts }}/{{ inventory_hostname }}.yaml"
 
   - name: Configure standard LFN DNS servers on spoke site switches
     cisco.ios.ios_system:

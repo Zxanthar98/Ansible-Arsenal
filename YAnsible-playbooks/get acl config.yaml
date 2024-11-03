@@ -1,5 +1,5 @@
 ---
-- name: Pulls a full backup of running-config
+- name: Create/enforce VTY-Sec ACL and apply to the VTY lines
 
   gather_facts: no
 
@@ -8,25 +8,23 @@
       prompt: "Which group should we run the playbook against?"
       private: no
       default: LAB
-      
     - name: "ansible_user"
       prompt: "Enter your username"
       private: no
-
     - name: "ansible_password"
       prompt: "Enter your password"
       private: yes
 
   hosts: "{{hosts}}"
 
+
   tasks:
 
-   - name: Take a backup of the running configuration from hosts and stores in local directory
-     cisco.ios.ios_config:
-      backup: true
-      backup_options:
-        dir_path: /etc/ansible/Config Backups/
+    - name: Gather ACLs configuration from target device
+      cisco.ios.ios_acls:
+        state: gathered
+      register: acloutput
 
-   - name: Save running to startup
-     cisco.ios.ios_config:
-      save_when: always
+    - name: Print acloutput
+      debug:
+        var: acloutput
