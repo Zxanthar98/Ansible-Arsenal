@@ -14,3 +14,5 @@ vlans:
     name: "IT_VLAN"
   - id: 40
     name: "Developers"
+  - id: 50
+    name: "Executives"
