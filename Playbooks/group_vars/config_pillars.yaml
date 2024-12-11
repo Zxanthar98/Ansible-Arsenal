@@ -12,3 +12,5 @@ vlans:
     name: "FINANCE_VLAN"
   - id: 30
     name: "IT_VLAN"
+  - id: 40
+    name: "Developers"
