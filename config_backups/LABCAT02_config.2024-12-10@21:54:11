@@ -1,0 +1,203 @@
+Building configuration...
+
+Current configuration : 4413 bytes
+!
+! Last configuration change at 10:18:22 UTC Tue Jan 31 2006 by admin
+!
+version 15.0
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname LABCAT02
+!
+boot-start-marker
+boot-end-marker
+!
+!
+username admin privilege 15 secret 5 $1$IbO8$6GVShXIO1I0yb9w1362DE/
+no aaa new-model
+switch 1 provision ws-c2960s-24ts-l
+!
+!
+ip domain-name coffeenet.local
+ip name-server 8.8.8.8
+ip name-server 1.1.1.1
+!
+!
+crypto pki trustpoint TP-self-signed-3274936320
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3274936320
+ revocation-check none
+ rsakeypair TP-self-signed-3274936320
+!
+!
+crypto pki certificate chain TP-self-signed-3274936320
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 33323734 39333633 3230301E 170D3036 30313032 30303031 
+  34385A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649 
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 32373439 
+  33363332 3030819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281 
+  8100AC3B 8CB8FB36 65224944 1F2F169A B194F496 48BB21DF 9DAAD2A9 E044C6CD 
+  FE6AE057 52985FEF A8050A36 8B83D697 8120E5A0 4E5F9EEB B85DA1D6 8973B805 
+  B8C2660C 8414D417 453EB68A DA98BC24 E40F134F 1DFC2746 F2508CFC 9BA4FB4A 
+  A67B9419 7C5A7040 6F9617F9 4CE8E06E CA3E97F4 F6E797C7 4EDE3C0C BB3483F7 
+  ED190203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603 
+  551D2304 18301680 14DDD661 644138D9 5CD556D3 726DCAEA DC744330 03301D06 
+  03551D0E 04160414 DDD66164 4138D95C D556D372 6DCAEADC 74433003 300D0609 
+  2A864886 F70D0101 05050003 81810084 A65EDDC8 D8E18BD7 F530AA6B 65BA8537 
+  14C515C5 7B882E08 C6996812 207D1F59 07BCE4E3 2EDBF5D0 0648349D 140D4CE2 
+  8D3DD963 F8764D7A C5EB5BF1 1B8D296A 561C1911 FB1AB40A 47A306AF 741EB5A6 
+  A2A66187 72E92497 7CAA7030 9474A21B EDACCE81 F03EC2AC A7E477B6 AF45B1F9 
+  81674CA9 2F5DBE17 080D3134 EAF99F
+  	quit
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+!
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0
+ no ip address
+!
+interface GigabitEthernet1/0/1
+ description Standard
+ switchport mode trunk
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/2
+ description Standard
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/3
+ description Standard
+!
+interface GigabitEthernet1/0/4
+ description Standard
+!
+interface GigabitEthernet1/0/5
+ description Standard
+!
+interface GigabitEthernet1/0/6
+ description Standard
+!
+interface GigabitEthernet1/0/7
+ description Standard
+!
+interface GigabitEthernet1/0/8
+ description Standard
+!
+interface GigabitEthernet1/0/9
+ description Standard
+!
+interface GigabitEthernet1/0/10
+ description Standard
+!
+interface GigabitEthernet1/0/11
+ description Standard
+ spanning-tree portfast
+!
+interface GigabitEthernet1/0/12
+ description Standard
+!
+interface GigabitEthernet1/0/13
+ description Standard
+!
+interface GigabitEthernet1/0/14
+ description Standard
+!
+interface GigabitEthernet1/0/15
+ description Standard
+!
+interface GigabitEthernet1/0/16
+ description Standard
+!
+interface GigabitEthernet1/0/17
+ description Standard
+!
+interface GigabitEthernet1/0/18
+ description Standard
+!
+interface GigabitEthernet1/0/19
+ description Standard
+!
+interface GigabitEthernet1/0/20
+ description Standard
+!
+interface GigabitEthernet1/0/21
+ description Standard
+!
+interface GigabitEthernet1/0/22
+ description Standard
+!
+interface GigabitEthernet1/0/23
+ description Standard
+ switchport access vlan 100
+ switchport mode access
+!
+interface GigabitEthernet1/0/24
+ description Standard
+ switchport access vlan 100
+ switchport mode access
+!
+interface GigabitEthernet1/0/25
+ description Standard
+!
+interface GigabitEthernet1/0/26
+ description Standard
+!
+interface GigabitEthernet1/0/27
+ description Standard
+!
+interface GigabitEthernet1/0/28
+ description Standard
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan100
+ ip address 10.10.210.3 255.255.255.0
+!
+ip default-gateway 10.10.210.1
+ip http server
+ip http secure-server
+!
+!
+ip access-list standard VTY-Sec
+ permit 192.168.10.0 0.0.0.31
+ permit 10.10.210.0 0.0.0.255
+ deny   any
+!
+!
+vstack
+!
+line con 0
+line vty 0 4
+ access-class VTY-Sec in
+ login local
+line vty 5 15
+ access-class VTY-Sec in
+ login local
+!
+end
