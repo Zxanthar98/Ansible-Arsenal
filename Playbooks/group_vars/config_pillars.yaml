@@ -4,3 +4,11 @@ GOOGLE: 8.8.8.8
 CLOUD: 1.1.1.1
 domain_name: coffeenet.local
 
+#Vlans in LAB network
+vlans:
+  - id: 10
+    name: "HR_VLAN"
+  - id: 20
+    name: "FINANCE_VLAN"
+  - id: 30
+    name: "IT_VLAN"
