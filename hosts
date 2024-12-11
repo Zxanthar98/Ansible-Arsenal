@@ -5,6 +5,8 @@ LABCAT02
 [LAB:vars]
 ansible_network_os=ios
 ansible_connection=network_cli
+ansible_user=admin
+ansible_password=cisco123
 
 [LABCAT01]
 LABCAT01 ansible_host=10.10.210.2

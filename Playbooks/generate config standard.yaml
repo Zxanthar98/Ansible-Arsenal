@@ -9,13 +9,13 @@
       private: no
       default: LAB
 
-    - name: "ansible_user"
-      prompt: "Enter your username"
-      private: no
+        #    - name: "ansible_user"
+        #prompt: "Enter your username"
+        #private: no
       
-    - name: "ansible_password"
-      prompt: "Enter your password"
-      private: yes
+        # - name: "ansible_password"
+        #prompt: "Enter your password"
+        #private: yes
 
   hosts: "{{hosts}}"
 
