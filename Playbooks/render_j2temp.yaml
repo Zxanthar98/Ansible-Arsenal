@@ -1,5 +1,5 @@
 ---
-- name: Renders a Jinja2 template to IOS devices
+- name: Enforce a config as code by utilizing a j2 template and importing variables
 
   gather_facts: no
 
@@ -21,7 +21,16 @@
 
   tasks:
 
-    - name: Render a Jinja2 template onto lab devices
+    - name: Include host variable files.
+      include_vars:
+        file: "/etc/ansible/Playbooks/host_vars/{{ inventory_hostname }}.yaml"
+
+    - name: Include group variable files.
+      include_vars:
+        file: "/etc/ansible/Playbooks/group_vars/config_pillars.yaml"
+
+
+    - name: Renders the jinja2 template onto IOS devices
       cisco.ios.ios_config:
-        backup: true
-      src: /etc/ansible/config_templates/ios_j2_template.yaml
+        src: /etc/ansible/config_templates/ios_j2_template.j2
+        match: line
