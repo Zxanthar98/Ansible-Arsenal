@@ -1,5 +1,5 @@
 ---
-- name: Change LFN standard DNS servers on switching infrastructure
+- name: Change DNS servers on IOS devices
 
   gather_facts: no
 
@@ -26,10 +26,8 @@
    - name: Configure standard LFN DNS servers on spoke site switches
      cisco.ios.ios_system:
       name_servers:
-       - "{{ LFNDC04 }}"
-       - "{{ LFNDC03 }}" 
-       - "{{ AZ1WUSDC01 }}"
-       - "{{ AZ2SCUSDC01 }}"
+       - "{{ GOOGLE }}"
+       - "{{ CLOUD }}"
      
    - name: Save running to startup
      cisco.ios.ios_config:

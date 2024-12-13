@@ -1,12 +1,11 @@
 hostname {{ hostname }}
 
+ip name-server {{ GOOGLE }} {{ CLOUD }}
+
+ip domain-name {{ domain_name }}
+
 ! VLAN Configuration
 {% for vlan in vlans %}
 vlan {{ vlan.id }}
  name {{ vlan.name }}
 {% endfor %}
-
-! DNS Configuration
-ip name-server {{ GOOGLE }} {{ CLOUD }}
-
-ip domain-name {{ domain_name }}
