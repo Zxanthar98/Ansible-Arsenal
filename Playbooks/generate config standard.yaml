@@ -25,7 +25,7 @@
      cisco.ios.ios_config:
       backup: true
       backup_options:
-        dir_path: /etc/ansible/Playbooks/config_templates/{{hosts}}/
+        dir_path: /etc/ansible/playbook_outputs{{hosts}}/
         filename: "{{inventory_hostname}}.cfg"
 
    - name: Save running to startup
