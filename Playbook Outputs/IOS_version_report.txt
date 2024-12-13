@@ -1,2 +1,0 @@
-Hostname:LABCAT01 Platform:WS-C2960-24TT-L IOS Version:15.0(2)SE9
-
