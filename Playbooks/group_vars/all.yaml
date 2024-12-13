@@ -16,3 +16,5 @@ vlans:
     name: "Developers"
   - id: 50
     name: "Executives"
+  - id: 60
+    name: "Accounting"
