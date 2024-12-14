@@ -20,5 +20,3 @@ vlans:
     name: "Accounting"
   - id: 70
     name: "Native_vlan"
-  - id: 5000
-    name: "Test for failure"
