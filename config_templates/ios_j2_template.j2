@@ -19,12 +19,6 @@ interface Vlan100
  description Lab Mgmt Interface
  ip address {{ vlan_100_IP }}
 
-!{% for interface in standard_ints %}
-!interface fa0/{{ interface.id }}
-!description standard
-!switchport mode access
-!switchport access {{ vlan.name(HR_vlan) }}
-!{% endfor %}
 
 line vty 0 4
  login local
