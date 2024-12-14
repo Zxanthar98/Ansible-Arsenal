@@ -1,3 +1,29 @@
 ---
 #System wide data
 hostname: LABCAT01
+
+#Gateway & routing config
+default_gateway: 10.10.210.1
+vlan_100_IP: 10.10.210.2 255.255.255.0
+
+standard_ints:
+  - id: 1
+  - id: 2
+  - id: 4
+  - id: 5
+  - id: 6
+  - id: 7
+  - id: 8
+  - id: 9
+  - id: 10
+  - id: 11
+  - id: 12
+  - id: 13
+  - id: 14
+  - id: 15
+  - id: 16
+  - id: 17
+  - id: 18
+  - id: 19
+  - id: 20
+  - id: 21

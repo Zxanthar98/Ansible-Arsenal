@@ -9,3 +9,31 @@ ip domain-name {{ domain_name }}
 vlan {{ vlan.id }}
  name {{ vlan.name }}
 {% endfor %}
+
+ip access-list standard VTY-Sec
+ permit {{ LAN_net }}
+ permit {{ LAB_net }}
+ deny   any
+
+interface Vlan100
+ description Lab Mgmt Interface
+ ip address {{ vlan_100_IP }}
+
+!{% for interface in standard_ints %}
+!interface fa0/{{ interface.id }}
+!description standard
+!switchport mode access
+!switchport access {{ vlan.name(HR_vlan) }}
+!{% endfor %}
+
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+
+ip default-gateway {{ default_gateway }}
+no ip http server
+no ip http secure-server
+netconf ssh

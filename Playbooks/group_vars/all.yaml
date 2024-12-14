@@ -20,3 +20,9 @@ vlans:
     name: "Accounting"
   - id: 70
     name: "Native_vlan"
+  - id: 100
+    name: "LAB_vlan"
+
+#Trusted source networks for VTY-Sec ACL
+LAN_net: 192.168.10.0 0.0.0.31
+LAB_net: 10.10.210.0 0.0.0.255
