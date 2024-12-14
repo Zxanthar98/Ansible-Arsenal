@@ -18,3 +18,5 @@ vlans:
     name: "Executives"
   - id: 60
     name: "Accounting"
+  - id: 70
+    name: "Native_vlan"
