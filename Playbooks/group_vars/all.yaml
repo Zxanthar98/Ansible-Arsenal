@@ -1,9 +1,9 @@
 ---
 #DNS and NTP data
 servers:
-   DNS1: 8.8.8.8
-   DNS2: 1.1.1.1
-   DNS3: 4.4.2.2
+  DNS1: 8.8.8.8
+  DNS2: 1.1.1.1
+  DNS3: 4.4.2.2
 
 domain_name: lab.local
 
