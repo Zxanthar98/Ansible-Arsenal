@@ -1,18 +1,10 @@
 ---
 #DNS and NTP data
 servers:
- - DNS1: "DNS1"
-   IP: 8.8.8.8
-   
- - DNS2: "DNS2"
-   IP: 1.1.1.1
-
- - DNS3: "DNS3"
-   IP: 4.4.2.2
-
- - DNS4: "DNS4"
-   IP: 8.8.1.1
-
+ - DNS1: 8.8.8.8
+ - DNS2: 1.1.1.1 
+ - DNS3: 4.4.2.2 
+ - DNS4: 8.8.1.1
 #Vlans in LAB network
 vlans:
   - id: 10
