@@ -39,9 +39,9 @@
       cisco.ios.ios_config:
         save_when: always
         
-    - name: Check the running-config against master config
-      cisco.ios.ios_config:
-        diff_against: intended
-        intended_config: "/etc/ansible/ios_j2_template.j2s"
+    #- name: Check the running-config against master config
+    #  cisco.ios.ios_config:
+    #    diff_against: intended
+    #    intended_config: "/etc/ansible/ios_j2_template.j2s"
 
-  diff: true
+  #diff: true

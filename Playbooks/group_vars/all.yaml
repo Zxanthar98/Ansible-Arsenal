@@ -6,8 +6,6 @@ servers:
   DNS3: 4.4.2.2
   DNS4: 8.8.1.1
 
-domain_name: lab.local
-
 #Vlans in LAB network
 vlans:
   - id: 10
@@ -30,3 +28,5 @@ vlans:
 #Trusted source networks for VTY-Sec ACL
 LAN_net: 192.168.10.0 0.0.0.31
 LAB_net: 10.10.210.0 0.0.0.255
+
+domain_name: lab.local
