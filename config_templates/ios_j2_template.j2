@@ -1,8 +1,8 @@
 hostname {{ hostname }}
 
 !DNS server config
-{% for server, IP in servers %}
-ip name-server {{ IP }}
+{% for server in servers %}
+ip name-server {{ server.IP }}
 {% endfor %}
 
 
