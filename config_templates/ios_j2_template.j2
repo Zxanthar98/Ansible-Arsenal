@@ -1,8 +1,12 @@
 hostname {{ hostname }}
 
-ip name-server {{ GOOGLE }} {{ CLOUD }}
+{% for server_name, IP in servers %}
+ip name-server {{IP}}
+{% endfor %}
 
 ip domain-name {{ domain_name }}
+
+aaa new-model
 
 ! VLAN Configuration
 {% for vlan in vlans %}

@@ -1,7 +1,10 @@
 ---
 #DNS and NTP data
-GOOGLE: 8.8.8.8
-CLOUD: 1.1.1.1
+servers:
+  - DNS1: 8.8.8.8
+  - DNS2: 1.1.1.1
+  - DNS3: 4.4.2.2
+
 domain_name: lab.local
 
 #Vlans in LAB network
