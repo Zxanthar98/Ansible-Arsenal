@@ -37,7 +37,7 @@
 
     - name: Save running configuration to startup
       cisco.ios.ios_config:
-        save_when: always
+        save_when: never
         
     #- name: Check the running-config against master config
     #  cisco.ios.ios_config:
