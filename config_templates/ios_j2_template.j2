@@ -1,6 +1,7 @@
 hostname {{ hostname }}
 
-{% for server_name, IP in servers %}
+!DNS server config
+{% for server, IP in servers %}
 ip name-server {{ IP }}
 {% endfor %}
 
@@ -9,7 +10,7 @@ ip domain-name {{ domain_name }}
 
 aaa new-model
 
-! VLAN Configuration
+!VLAN Configuration
 {% for vlan in vlans %}
 vlan {{ vlan.id }}
  name {{ vlan.name }}
