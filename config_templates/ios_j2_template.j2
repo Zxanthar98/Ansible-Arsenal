@@ -1,6 +1,6 @@
 hostname {{ hostname }}
 
-{% for server_name, IP in servers.items() %}
+{% for server_name, IP in servers %}
 ip name-server {{ IP }}
 {% endfor %}
 
