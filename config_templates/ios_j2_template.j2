@@ -1,8 +1,9 @@
 hostname {{ hostname }}
 
-{% for server_name, IP in servers %}
-ip name-server {{IP}}
+{% for server_name, IP in servers.items() %}
+ip name-server {{ IP }}
 {% endfor %}
+
 
 ip domain-name {{ domain_name }}
 
@@ -31,6 +32,7 @@ line vty 5 15
  transport input ssh
 
 ip default-gateway {{ default_gateway }}
+
 no ip http server
 no ip http secure-server
 netconf ssh
