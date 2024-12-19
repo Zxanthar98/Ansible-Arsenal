@@ -17,8 +17,6 @@ servers:
 vlans:
   - id: 10
     name: "HR_VLAN"
-  - id: 20
-    name: "Finance"
   - id: 30
     name: "IT_VLAN"
   - id: 40
