@@ -12,8 +12,12 @@ aaa new-model
 
 !VLAN Configuration
 {% for vlan in vlans %}
+{% if vlan.state == 'present' %}
 vlan {{ vlan.id }}
  name {{ vlan.name }}
+{% elif vlan.state == 'absent' %}
+no vlan {{ vlan.id }}
+{% endif %}
 {% endfor %}
 
 ip access-list standard VTY-Sec
@@ -27,7 +31,9 @@ interface Vlan100
 
 line vty 0 4
  transport input ssh
+ exec-timeout 30
 line vty 5 15
+ exec-timeout 30
  transport input ssh
 
 ip default-gateway {{ default_gateway }}

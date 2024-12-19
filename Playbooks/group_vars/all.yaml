@@ -16,19 +16,29 @@ servers:
 #Vlans in LAB network
 vlans:
   - id: 10
-    name: "HR_VLAN"
+    name: "Access"
+    state: present
+  - id: 20
+    name: "Finance"
+    state: absent
   - id: 30
     name: "IT_VLAN"
+    state: present
   - id: 40
     name: "Developers"
+    state: present
   - id: 50
     name: "Executives"
+    state: absent
   - id: 60
     name: "Accounting"
+    state: absent
   - id: 70
     name: "Native_vlan"
+    state: present
   - id: 100
     name: "LAB_vlan"
+    state: present
 
 #Trusted source networks for VTY-Sec ACL
 LAN_net: 192.168.10.0 0.0.0.31
