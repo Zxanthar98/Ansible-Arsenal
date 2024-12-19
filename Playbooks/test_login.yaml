@@ -22,4 +22,5 @@
    - name: Enter priv exec mode
      cisco.ios.command:
       commands:
-        - conf t
+        - config t
+        - do show run
