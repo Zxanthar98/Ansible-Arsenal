@@ -18,5 +18,5 @@ interfaces:
         speed: 'Gigabit'
         slotid: 0
         portid: 2
-        type: access
-        description: 'Dev'
+        type: Dev
+        description: 'Developers'
