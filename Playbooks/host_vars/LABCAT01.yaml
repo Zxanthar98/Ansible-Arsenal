@@ -5,3 +5,18 @@ hostname: LABCAT01
 #Gateway & routing config
 default_gateway: 10.10.210.1
 vlan_100_IP: 10.10.210.2 255.255.255.0
+
+#Platform specific interface config
+interfaces:
+    1:
+        speed: ''
+        slotid: 0
+        portid: 1
+        type: trunk
+        description: 'Uplink'
+    2:
+        speed: ''
+        slotid: 0
+        portid: 2
+        type: access
+        description: 'Access'
