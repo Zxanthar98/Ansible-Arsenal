@@ -9,14 +9,14 @@ vlan_100_IP: 10.10.210.3 255.255.255.0
 #Platform specific interface config
 interfaces:
     1:
-        speed: ''
+        speed: 'Gigabit'
         slotid: 0
         portid: 1
         type: trunk
         description: 'Uplink'
     2:
-        speed: ''
+        speed: 'Gigabit'
         slotid: 0
         portid: 2
         type: access
-        description: 'Access'
+        description: 'Dev'
