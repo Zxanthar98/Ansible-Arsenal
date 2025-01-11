@@ -32,7 +32,7 @@
 
     - name: Renders the jinja2 template onto IOS devices
       cisco.ios.ios_config:
-        src: /etc/ansible/config_templates/ios_j2_template.j2
+        src: /etc/ansible/config_templates/ios_switch.j2
         match: exact
 
     - name: Save running configuration to startup
