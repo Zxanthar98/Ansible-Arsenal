@@ -33,5 +33,5 @@ domain_name: lab
 
 #Routing protocols
 ospf:
-  process_id: 1
-  area: 1
+ - process_id: 1
+ - area: 1
