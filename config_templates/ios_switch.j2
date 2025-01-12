@@ -8,6 +8,8 @@ ip name-server {{ server.IP }}
 ip domain-name {{ domain_name }}
 
 aaa new-model
+aaa authentication login default local
+aaa authorization exec default local
 
 ip vrf definition
 
