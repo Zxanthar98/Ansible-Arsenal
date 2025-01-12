@@ -9,12 +9,7 @@ ip domain-name {{ domain_name }}
 
 aaa new-model
 
-vrf definition mgmt
- address-family ipv4
- exit-address-family
-vrf list mgmt
- vrf forwarding mgmt
-
+ip vrf definition
 
 !VLAN Configuration
 {% for vlan in vlans %}
