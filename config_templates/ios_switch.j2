@@ -10,6 +10,10 @@ ip domain-name {{ domain_name }}
 
 aaa new-model
 
+vrf definition mgmt-vrf
+ address-family ipv4
+
+
 !VLAN Configuration
 {% for vlan in vlans %}
 vlan {{ vlan.id }}
@@ -19,11 +23,17 @@ vlan {{ vlan.id }}
 ip access-list standard VTY-Sec
  permit {{ LAN_net }}
  permit {{ LAB_net }}
- deny   any
+ deny any log
+
+{% for spf in ospf %}
+router ospf {{process_id.id}}
 
 interface Vlan100
  description Lab Mgmt Interface
+ vrf forwarding mgmt-vrf 
  ip address {{ vlan_100_IP }}
+ ip ospf 1 area 1
+ 
 
 line vty 0 4
  transport input ssh

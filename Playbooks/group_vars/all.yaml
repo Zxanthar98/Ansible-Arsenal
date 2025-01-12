@@ -29,3 +29,9 @@ LAB_net: 10.10.210.0 0.0.0.255
 MGMT_net: 10.10.10.0 0.0.0.255
 
 domain_name: lab
+
+#Routing protocols
+ospf_mgmt:
+  process_id: 1
+  area: 1
+  router_id: {{}}

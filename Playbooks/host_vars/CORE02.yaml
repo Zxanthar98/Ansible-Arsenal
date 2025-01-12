@@ -1,10 +1,9 @@
 ---
 #System wide data
-hostname: CORE01
+hostname: CORE02
 
 #Gateway & routing config
-vlan_100_IP: 10.10.10.4 255.255.255.0
-router_id: 1.1.1.4
+vlan_100_IP: 10.10.10.5 255.255.255.0
 
 #Platform specific interface config
 interfaces:
