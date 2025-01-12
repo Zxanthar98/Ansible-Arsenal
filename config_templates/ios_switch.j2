@@ -27,11 +27,6 @@ ip access-list standard VTY-Sec
  permit {{ LAB_net }}
  deny any log
 
-#{% for spf in ospf %}
-#router ospf {{spf.process_id}} vrf mgmt
-# router-id {{router_id}}
-#{% endfor %}
-
 {% for interface in interfaces %}
 interface Vlan100
  description Lab Mgmt Interface
