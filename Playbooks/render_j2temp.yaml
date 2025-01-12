@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 - name: Enforce a config as code by utilizing a j2 template and importing variables
 
@@ -44,4 +45,52 @@
         diff_against: intended
         intended_config: "/etc/ansible/ios_j2_template.j2s"
 
+=======
+---
+- name: Enforce a config as code by utilizing a j2 template and importing variables
+
+  gather_facts: no
+
+  vars_prompt:
+    - name: hosts
+      prompt: "Which group should we run the playbook against?"
+      private: no
+      default: LAB
+
+    - name: "ansible_user"
+      prompt: "Enter your username"
+      private: no
+
+    - name: "ansible_password"
+      prompt: "Enter your password"
+      private: yes
+
+  hosts: "{{hosts}}"
+
+  tasks:
+
+    - name: Include host variable files.
+      include_vars:
+        file: "/etc/ansible/Playbooks/host_vars/{{ inventory_hostname }}.yaml"
+
+    - name: Include group variable files.
+      include_vars:
+        file: "/etc/ansible/Playbooks/group_vars/all.yaml"
+
+
+    - name: Renders the jinja2 template onto IOS devices
+      cisco.ios.ios_config:
+        src: /etc/ansible/config_templates/ios_switch.j2
+        match: exact
+
+    - name: Save running configuration to startup
+      cisco.ios.ios_config:
+        save_when: never
+        
+    - name: Check the running-config against master config
+      cisco.ios.ios_config:
+        diff_against: intended
+        intended_config: "/etc/ansible/ios_j2_template.j2s"
+
+>>>>>>> interface_template
   diff: true

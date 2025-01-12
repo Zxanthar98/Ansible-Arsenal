@@ -1,10 +1,10 @@
 ---
 #System wide data
-hostname: LABCAT02
+hostname: CORE02
 
 #Gateway & routing config
-default_gateway: 10.10.210.1
-vlan_100_IP: 10.10.210.3 255.255.255.0
+vlan_100_IP: 172.16.1.6 255.255.255.252
+router_id: 1.1.1.5
 
 #Platform specific interface config
 interfaces:
