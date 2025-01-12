@@ -27,8 +27,8 @@ ip access-list standard VTY-Sec
  permit {{ LAB_net }}
  deny any log
 
-#{% for ospf in ospf_mgmt %}
-#router ospf {{ospf.process_id}} vrf mgmt
+#{% for spf in ospf %}
+#router ospf {{spf.process_id}} vrf mgmt
 # router-id {{router_id}}
 #{% endfor %}
 
