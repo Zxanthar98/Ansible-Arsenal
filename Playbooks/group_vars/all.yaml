@@ -30,6 +30,7 @@ MGMT_net: 172.16.1.0 0.0.0.255
 
 domain_name: lab
 
+
 #Routing protocols
 ospf_mgmt:
   process_id: 1
