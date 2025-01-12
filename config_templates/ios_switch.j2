@@ -25,43 +25,6 @@ interface Vlan100
  description Lab Mgmt Interface
  ip address {{ vlan_100_IP }}
 
-{% for id, int in interfaces.iteritems() -%}
-    {% if int.type == 'trunk' %}!
-interface {{int.speed}}Ethernet{{ int.slotid }}/{{ int.portid }}
-    switchport trunk encapsulation dot1q
-    switchport trunk native vlan {{ vlans.native }}
-    switchport trunk allowed vlan {{ vlans.native }}
-{% for vlan in vlans %}
-{% if vlan.name != 'IT_VLAN' %}
-{% if vlan.name != 'HR_VLAN' %}
-{% if vlan.name != 'Developers' %}
-{% if vlan.name != 'Executives' %}
-{% if vlan.name != 'Accounting' %}
-{% if vlan.name != 'Native_vlan' %}
-    switchport trunk allowed vlan add {{ vlan.id }}
-{% endif %}
-{% endif %}
-{% endif %}
-{% endif %}
-{% endif %}
-{% endif %}
-{% endfor %}
-    switchport nonegotiate
-    switchport mode trunk
-!
-{% elif int.type == 'Dev' %}
-interface {{int.speed}}Ethernet{{ int.slotid}}/{{ int.portid }}
-    description {{ int.description }}
-    switchport mode access
-    switchport access vlan {{ vlans.access }}
-    switchport nonegotiate
-    switchport voice vlan {{ vlans.voice }}
-    spanning-tree portfast
-    spanning-tree bpduguard enable
-!
-{% endif %}
-{% endfor %}
-
 line vty 0 4
  transport input ssh
  exec-timeout 30
