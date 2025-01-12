@@ -33,9 +33,11 @@ interface Vlan100
 {% endfor %}
 
 line vty 0 4
+access-class VTY-Sec in
  transport input ssh
  exec-timeout 30
 line vty 5 15
+access-class VTY-Sec in
 exec-timeout 30
  transport input ssh
 
