@@ -13,7 +13,7 @@ servers:
 #Vlans in LAB network
 vlans:
   - id: 10
-    name: "user_vlan-10N"
+    name: "user_vlan-10"
   - id: 20
     name: "dev_vlan-20"
   - id: 30

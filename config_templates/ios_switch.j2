@@ -5,7 +5,6 @@ hostname {{ hostname }}
 ip name-server {{ server.IP }}
 {% endfor %}
 
-
 ip domain-name {{ domain_name }}
 
 aaa new-model
@@ -25,8 +24,12 @@ ip access-list standard VTY-Sec
  permit {{ LAB_net }}
  deny any log
 
-{% for spf in ospf %}
-router ospf {{process_id.id}}
+#{% for ospf in ospf_mgmt %}
+#router ospf {{ospf.process_id}}
+# router-id {{ospf.router_id}}
+#{% endfor %}
+
+{% for interface in interfaces %}
 
 interface Vlan100
  description Lab Mgmt Interface
@@ -41,8 +44,6 @@ line vty 0 4
 line vty 5 15
 exec-timeout 30
  transport input ssh
-
-ip default-gateway {{ default_gateway }}
 
 no ip http server
 no ip http secure-server
