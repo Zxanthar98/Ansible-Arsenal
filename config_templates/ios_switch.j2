@@ -9,8 +9,11 @@ ip domain-name {{ domain_name }}
 
 aaa new-model
 
-vrf definition mgmt-vrf
+vrf definition mgmt
  address-family ipv4
+ exit-address-family
+vrf list mgmt
+ vrf forwarding mgmt
 
 
 !VLAN Configuration
@@ -25,7 +28,7 @@ ip access-list standard VTY-Sec
  deny any log
 
 #{% for ospf in ospf_mgmt %}
-#router ospf {{ospf.process_id}}
+#router ospf {{ospf.process_id}} vrf mgmt
 # router-id {{ospf.router_id}}
 #{% endfor %}
 
