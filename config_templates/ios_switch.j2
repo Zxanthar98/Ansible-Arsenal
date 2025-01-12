@@ -29,7 +29,7 @@ ip access-list standard VTY-Sec
 
 #{% for ospf in ospf_mgmt %}
 #router ospf {{ospf.process_id}} vrf mgmt
-# router-id {{ospf.router_id}}
+# router-id {{router_id}}
 #{% endfor %}
 
 {% for interface in interfaces %}

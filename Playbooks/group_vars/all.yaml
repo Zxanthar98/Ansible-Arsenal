@@ -18,10 +18,10 @@ vlans:
     name: "dev_vlan-20"
   - id: 30
     name: "accounting_vlan-30"
-  - id: 999
-    name: "native_vlan-999"
   - id: 100
     name: "mgmt_vlan-100"
+  - id: 999
+    name: "native_vlan-999"
 
 #Trusted source networks for VTY-Sec ACL
 LAN_net: 192.168.10.0 0.0.0.31
@@ -34,4 +34,3 @@ domain_name: lab
 ospf_mgmt:
   process_id: 1
   area: 1
-  router_id: {{}}
