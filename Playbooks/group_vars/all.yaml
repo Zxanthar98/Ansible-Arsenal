@@ -5,7 +5,7 @@ servers:
    IP: 192.168.10.16
    
  - DNS2: "DNS2"
-   IP: 10.10.210.1
+   IP: 192.168.10.1
 
  - DNS3: "DNS3"
    IP: 8.8.8.8
@@ -13,22 +13,19 @@ servers:
 #Vlans in LAB network
 vlans:
   - id: 10
-    name: "HR_VLAN"
+    name: "user_vlan-10N"
+  - id: 20
+    name: "dev_vlan-20"
   - id: 30
-    name: "IT_VLAN"
-  - id: 40
-    name: "Developers"
-  - id: 50
-    name: "Executives"
-  - id: 60
-    name: "Accounting"
-  - id: 70
-    name: "Native_vlan"
+    name: "accounting_vlan-30"
+  - id: 999
+    name: "native_vlan-999"
   - id: 100
-    name: "LAB_vlan"
+    name: "mgmt_vlan-100"
 
 #Trusted source networks for VTY-Sec ACL
 LAN_net: 192.168.10.0 0.0.0.31
 LAB_net: 10.10.210.0 0.0.0.255
+MGMT_net: 10.10.10.0 0.0.0.255
 
-domain_name: lab.local
+domain_name: lab
