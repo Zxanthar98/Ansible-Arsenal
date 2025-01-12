@@ -5,39 +5,50 @@ hostname {{ hostname }}
 ip name-server {{ server.IP }}
 {% endfor %}
 
-
 ip domain-name {{ domain_name }}
 
 aaa new-model
 
+vrf definition mgmt
+ address-family ipv4
+ exit-address-family
+vrf list mgmt
+ vrf forwarding mgmt
+
+
 !VLAN Configuration
 {% for vlan in vlans %}
-{% if vlan.state == 'present' %}
 vlan {{ vlan.id }}
  name {{ vlan.name }}
-{% elif vlan.state == 'absent' %}
-no vlan {{ vlan.id }}
-{% endif %}
 {% endfor %}
 
 ip access-list standard VTY-Sec
  permit {{ LAN_net }}
  permit {{ LAB_net }}
- deny   any
+ deny any log
+
+#{% for ospf in ospf_mgmt %}
+#router ospf {{ospf.process_id}} vrf mgmt
+# router-id {{router_id}}
+#{% endfor %}
+
+{% for interface in interfaces %}
 
 interface Vlan100
  description Lab Mgmt Interface
+ vrf forwarding mgmt-vrf 
  ip address {{ vlan_100_IP }}
+ ip ospf 1 area 1
+ 
 
 line vty 0 4
  transport input ssh
  exec-timeout 30
 line vty 5 15
- exec-timeout 30
+exec-timeout 30
  transport input ssh
-
-ip default-gateway {{ default_gateway }}
 
 no ip http server
 no ip http secure-server
+>>>>>>> interface_template:config_templates/ios_switch.j2
 netconf ssh
