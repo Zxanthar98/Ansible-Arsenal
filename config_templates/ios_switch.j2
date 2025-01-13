@@ -11,7 +11,7 @@ aaa new-model
 aaa authentication login default local
 aaa authorization exec default local
 
-ip vrf definition
+ip vrf definition mgmt
 
 !VLAN Configuration
 {% for vlan in vlans %}
@@ -33,9 +33,9 @@ interface Vlan100
 
 line vty 0 4
  transport input ssh
- exec-timeout 30
+ exec-timeout 35
 line vty 5 15
-exec-timeout 30
+exec-timeout 35
  transport input ssh
 
 no ip http server
