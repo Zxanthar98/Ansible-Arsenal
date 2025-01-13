@@ -14,19 +14,19 @@ servers:
 vlans:
   - id: 10
     name: "user_vlan-10"
-    present: True
+    state: present
   - id: 20
     name: "dev_vlan-20"
-    present: True
+    state: present
   - id: 30
     name: "accounting_vlan-30"
-    present: True
+    state: present
   - id: 100
     name: "mgmt_vlan-100"
-    present: True
+    state: present
   - id: 999
     name: "native_vlan-999"
-    present: True
+    state: present
 
 #Trusted source networks for VTY-Sec ACL
 LAN_net: 192.168.10.0 0.0.0.31

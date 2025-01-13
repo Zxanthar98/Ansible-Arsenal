@@ -19,6 +19,15 @@ vlan {{ vlan.id }}
  name {{ vlan.name }}
 {% endfor %}
 
+{% for vlan in vlans %}
+{% if vlan.state == 'present' %}
+vlan {{ vlan.id }}
+ name {{ vlan.name }}
+{% elif vlan.state == 'absent' %}
+no vlan {{ vlan.id }}
+{% endif %}
+{% endfor %}
+
 ip access-list standard VTY-Sec
  10 permit {{ LAN_net }}
  20 permit {{ LAB_net }}
