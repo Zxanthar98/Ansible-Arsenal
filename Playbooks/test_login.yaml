@@ -21,11 +21,11 @@
       commands:
         - config t
         - do show run
-     when: "'SWITCHES' in group_names"
+     when: "'DEV' in group_names"
 
    - name: Enter priv exec mode
      cisco.ios.command:
       commands:
         - config t
         - do show run
-     when: "'DEV-SWITCHES' in group_names"
+     when: "'PROD' in group_names"
