@@ -11,7 +11,9 @@ aaa new-model
 aaa authentication login default local
 aaa authorization exec default local
 
-ip vrf mgmt
+{% for vrf in vrfs %}
+ip vrf {{ vrf.name }}
+{% endfor %}
 
 !VLAN Configuration
 {% for vlan in vlans %}
