@@ -22,6 +22,7 @@ vlan {{ vlan.id }}
 ip access-list standard VTY-Sec
  permit {{ LAN_net }}
  permit {{ LAB_net }}
+ permit {{ MGMT_net}}
  deny any log
 
 {% for interface in interfaces %}
