@@ -23,7 +23,16 @@
 
     - name: Include host variable files.
       include_vars:
-        file: "/etc/ansible/Playbooks/host_vars/{{ inventory_hostname }}.yaml"
+        prod: "/etc/ansible/Playbooks/host_vars/production{{ inventory_hostname }}.yaml"
+      when: "'PROD' in group_names"
+
+    - name: Include host variable files.
+      include_vars:
+        prod: "/etc/ansible/Playbooks/host_vars/development{{ inventory_hostname }}.yaml"
+      when: "'DEV' in group_names"
+        
+
+        
 
     - name: Include group variable files.
       include_vars:

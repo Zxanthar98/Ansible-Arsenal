@@ -1,0 +1,22 @@
+---
+#System wide data
+hostname: CORE02
+
+#Gateway & routing config
+vlan_100_IP: 172.16.1.6 255.255.255.252
+router_id: 1.1.1.5
+
+#Platform specific interface config
+interfaces:
+    1:
+        speed: 'Gigabit'
+        slotid: 0
+        portid: 1
+        type: trunk
+        description: 'Uplink'
+    2:
+        speed: 'Gigabit'
+        slotid: 0
+        portid: 2
+        type: Dev
+        description: 'Developers'
