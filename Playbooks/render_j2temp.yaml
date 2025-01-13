@@ -21,26 +21,31 @@
 
   tasks:
 
-    - name: Include production host variable files.
+    - name: Include production host variable files
       include_vars:
-        prod: "/etc/ansible/Playbooks/host_vars/production{{ inventory_hostname }}.yaml"
+        prod: "/etc/ansible/Playbooks/host_vars/production/{{ inventory_hostname }}.yaml"
       when: "'PROD' in group_names"
 
-    - name: Include development host variable files.
+    - name: Include development host variable files
       include_vars:
-        prod: "/etc/ansible/Playbooks/host_vars/development{{ inventory_hostname }}.yaml"
+        prod: "/etc/ansible/Playbooks/host_vars/development/{{ inventory_hostname }}.yaml"
       when: "'DEV' in group_names"
 
-    - name: Include group variable files.
+    - name: Include group variable files
       include_vars:
         file: "/etc/ansible/Playbooks/group_vars/all.yaml"
-
 
     - name: Renders the jinja2 template onto devices in the switches group in the hosts inventory file
       cisco.ios.ios_config:
         src: /etc/ansible/config_templates/ios_switch.j2
         match: exact
       when: "'SWITCHES' in group_names"
+
+    - name: Renders the jinja2 template onto devices in the switches group in the hosts inventory file
+      cisco.ios.ios_config:
+        src: /etc/ansible/config_templates/ios_switch.j2
+        match: exact
+      when: "'DEV-SWITCHES' in group_names"
 
     - name: Save running configuration to startup
       cisco.ios.ios_config:
