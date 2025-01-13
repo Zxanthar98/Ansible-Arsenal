@@ -15,12 +15,6 @@ aaa authorization exec default local
 ip vrf {{ vrf.name }}
 {% endfor %}
 
-!VLAN Configuration
-{% for vlan in vlans %}
-vlan {{ vlan.id }}
- name {{ vlan.name }}
-{% endfor %}
-
 {% for vlan in vlans %}
 {% if vlan.state == 'present' %}
 vlan {{ vlan.id }}

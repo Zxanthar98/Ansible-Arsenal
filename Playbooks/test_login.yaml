@@ -4,11 +4,6 @@
   gather_facts: no
 
   vars_prompt:
-    - name: hosts 
-      prompt: "Which group should we run the playbook against?"
-      private: no
-      default: LAB
-
     - name: "ansible_user"
       prompt: "Enter your username"
       private: no
@@ -17,7 +12,7 @@
       prompt: "Enter your password"
       private: yes
 
-  hosts: "{{hosts}}"
+  hosts: all
 
   tasks:
 
@@ -26,3 +21,11 @@
       commands:
         - config t
         - do show run
+     when: "'SWITCHES' in group_names"
+
+   - name: Enter priv exec mode
+     cisco.ios.command:
+      commands:
+        - config t
+        - do show run
+     when: "'DEV-SWITCHES' in group_names"
