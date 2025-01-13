@@ -12,7 +12,7 @@
       prompt: "Enter your password"
       private: yes
 
-- hosts: "{{ lookup('file', '/etc/ansible/run_host') }}"
+- hosts: all
 
   tasks:
 
