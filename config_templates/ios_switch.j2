@@ -25,13 +25,11 @@ ip access-list standard VTY-Sec
  30 permit {{ MGMT_net}}
  40 deny any log
 
-{% for interface in interfaces %}
 interface Vlan100
  description Lab Mgmt Interface
  vrf forwarding mgmt-vrf 
  ip address {{ vlan_100_IP }}
-# ip ospf 1 area 1
-{% endfor %}
+  ip ospf 1 area 1
 
 line vty 0 4
  transport input ssh
