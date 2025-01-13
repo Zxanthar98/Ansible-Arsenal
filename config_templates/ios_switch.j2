@@ -20,10 +20,10 @@ vlan {{ vlan.id }}
 {% endfor %}
 
 ip access-list standard VTY-Sec
- permit {{ LAN_net }}
- permit {{ LAB_net }}
- permit {{ MGMT_net}}
- deny any log
+ 10 permit {{ LAN_net }}
+ 20 permit {{ LAB_net }}
+ 30 permit {{ MGMT_net}}
+ 40 deny any log
 
 {% for interface in interfaces %}
 interface Vlan100
