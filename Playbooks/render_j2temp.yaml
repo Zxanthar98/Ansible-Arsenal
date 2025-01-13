@@ -12,7 +12,7 @@
       prompt: "Enter your password"
       private: yes
 
-- hosts: "all"
+  hosts: all
 
   tasks:
 
