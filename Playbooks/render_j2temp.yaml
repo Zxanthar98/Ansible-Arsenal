@@ -7,7 +7,6 @@
     - name: hosts
       prompt: "Which group should we run the playbook against?"
       private: no
-      default: LAB
 
     - name: "ansible_user"
       prompt: "Enter your username"
