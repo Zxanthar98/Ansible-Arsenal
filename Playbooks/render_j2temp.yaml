@@ -3,8 +3,6 @@
 
   gather_facts: no
 
-- hosts: "{{ lookup('file', '/etc/ansible/run_host') }}"
-
   vars_prompt:
     - name: "ansible_user"
       prompt: "Enter your username"
@@ -13,6 +11,8 @@
     - name: "ansible_password"
       prompt: "Enter your password"
       private: yes
+
+- hosts: "{{ lookup('file', '/etc/ansible/run_host') }}"
 
   tasks:
 
