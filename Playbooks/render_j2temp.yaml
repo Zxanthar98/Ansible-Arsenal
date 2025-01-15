@@ -15,7 +15,7 @@
   hosts: all
 
   tasks:
-
+      ####LOAD VARIABLES FOR TEST, DEV, and PROD ENVIRONMENTS####
     - name: Include PROD production host variable files
       include_vars:
         file: "/etc/ansible/Playbooks/host_vars/production/{{inventory_hostname}}.yaml"
@@ -26,15 +26,30 @@
         file: "/etc/ansible/Playbooks/host_vars/development/{{inventory_hostname}}.yaml"
       when: "'DEV' in group_names"
 
+    - name: Include TEST development host variable files
+      include_vars:
+        file: "/etc/ansible/Playbooks/host_vars/development/{{inventory_hostname}}.yaml"
+      when: "'TEST' in group_names"
+
     - name: Include group variable files
       include_vars:
         file: "/etc/ansible/Playbooks/group_vars/all.yaml"
 
+
+
+      ####RENDER JINJA2 TEMPLATE UNTO TEST,DEV, and PROD DEVICES####
     - name: Render Jinja2 template unto SWITCHES
       cisco.ios.ios_config:
         src: /etc/ansible/config_templates/ios_switch.j2
         match: exact
       when: "'SWITCHES' in group_names"
+
+      ####RENDER JINJA2 TEMPLATE UNTO TEST,DEV, and PROD DEVICES####
+    - name: Render Jinja2 template unto SWITCHES
+      cisco.ios.ios_config:
+        src: /etc/ansible/config_templates/ios_switch.j2
+        match: exact
+      when: "'TEST-SWITCHES' in group_names"
 
     - name: Render Jinja2 template unto DEV-SWITCHES 
       cisco.ios.ios_config:
@@ -42,10 +57,17 @@
         match: exact
       when: "'DEV-SWITCHES' in group_names"
 
+    - name: Render Jinja2 template unto DEV-SWITCHES 
+      cisco.ios.ios_config:
+        src: /etc/ansible/config_templates/ios_switch.j2
+        match: exact
+      when: "'DEV-SWITCHES' in group_names"
+
+      ####SAVE RUNNING CONFIGURATION TO STARTUP CONFIGURATION####
     - name: Save running configuration to startup
       cisco.ios.ios_config:
         save_when: always
-        
+  
     - name: Check the running-config of the devices in the switches group in the hosts inventory file against the master
       cisco.ios.ios_config:
         diff_against: intended
