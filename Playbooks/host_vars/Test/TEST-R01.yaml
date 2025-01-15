@@ -1,0 +1,6 @@
+---
+#System wide data
+hostname: TEST-R01
+
+#Gateway & routing config
+router_id: 1.1.3.3
