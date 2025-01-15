@@ -57,11 +57,7 @@
         match: exact
       when: "'DEV-SWITCHES' in group_names"
 
-    - name: Render Jinja2 template unto TEST-SWITCHES 
-      cisco.ios.ios_config:
-        src: /etc/ansible/config_templates/ios_switch.j2
-        match: exact
-      when: "'TEST-SWITCHES' in group_names"
+
 
       ####SAVE RUNNING CONFIGURATION TO STARTUP CONFIGURATION####
     - name: Save running configuration to startup
