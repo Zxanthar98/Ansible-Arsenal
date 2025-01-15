@@ -20,7 +20,7 @@ vlans:
     state: present
   - id: 30
     name: "accounting_vlan-30"
-    state: present
+    state: absent
   - id: 100
     name: "mgmt_vlan-100"
     state: present
