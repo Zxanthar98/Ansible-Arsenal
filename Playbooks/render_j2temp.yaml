@@ -28,7 +28,7 @@
 
     - name: Include TEST development host variable files
       include_vars:
-        file: "/etc/ansible/Playbooks/host_vars/development/{{inventory_hostname}}.yaml"
+        file: "/etc/ansible/Playbooks/host_vars/Test/{{inventory_hostname}}.yaml"
       when: "'TEST' in group_names"
 
     - name: Include group variable files
