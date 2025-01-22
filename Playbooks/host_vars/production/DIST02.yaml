@@ -1,10 +1,10 @@
 ---
 #System wide data
-hostname: DEV-DIST01
+hostname: DIST02
 
 #Gateway & routing config
-vlan_100_IP: 192.168.90.4 255.255.255.224
-router_id: 1.1.2.7
+vlan_100_IP: 172.16.1.5 255.255.255.224
+router_id: 1.1.1.7
 
 #Platform specific interface config
 interfaces:
