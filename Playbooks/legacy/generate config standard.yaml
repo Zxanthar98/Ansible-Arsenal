@@ -1,0 +1,33 @@
+---
+- name: Pulls the complete running config and overwrites .cfg file in host_vars dir
+
+  gather_facts: no
+
+  vars_prompt:
+    - name: hosts 
+      prompt: "Which group should we run the playbook against?"
+      private: no
+      default: LAB
+
+        #    - name: "ansible_user"
+        #prompt: "Enter your username"
+        #private: no
+      
+        # - name: "ansible_password"
+        #prompt: "Enter your password"
+        #private: yes
+
+  hosts: "{{hosts}}"
+
+  tasks:
+
+   - name: Take backup to store as new known config state
+     cisco.ios.ios_config:
+      backup: true
+      backup_options:
+        dir_path: /etc/ansible/playbook_outputs{{hosts}}/
+        filename: "{{inventory_hostname}}.cfg"
+
+   - name: Save running to startup
+     cisco.ios.ios_config:
+      save_when: always

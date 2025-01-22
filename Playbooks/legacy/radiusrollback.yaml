@@ -1,0 +1,21 @@
+---
+- name: Rolls back configuration made in configureradiusauth.yaml
+
+  gather_facts: no
+
+  vars_prompt:
+    - name: hosts 
+      prompt: "Which group should we run the playbook against?"
+      private: no
+      default: LAB
+
+  hosts: "{{hosts}}"
+
+  tasks:
+
+  - name: Changes authentication method from remote using radius to use local authentication
+    cisco.ios.ios_config:
+      lines:
+        - aaa authorization exec default local
+        - aaa authentication login default local
+      save_when: always

@@ -1,0 +1,35 @@
+---
+- name: Configure LAB switchport interfaces to encforce standard configururation
+
+  hosts: switches
+
+  gather_facts: no
+
+  tasks:
+
+  - name: Include host-specific variables
+    include_vars:
+      file: "host_vars/{{ inventory_hostname }}.yaml"
+
+  - name: Replaces device configuration with provided configuration
+    cisco.ios.ios_l2_interfaces:
+      config:
+        - name: "{{ LAB_UPLINK }}"
+          mode: access
+          access:
+            vlan: 100
+        - name: "{{ LAB_DOWNLINK }}"
+          mode: access
+          access:
+            vlan: 100
+      state: merged
+
+  - name: Set the interface description
+    cisco.ios.ios_interfaces:
+      config:
+        - name: "{{ LAB_UPLINK }}"
+          description: DONT TOUCH ME
+          enabled: true
+        - name: "{{ LAB_DOWNLINK }}"
+          description: DONT TOUCH ME
+          enabled: true
