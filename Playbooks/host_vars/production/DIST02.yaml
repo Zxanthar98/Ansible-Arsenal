@@ -3,7 +3,7 @@
 hostname: DIST02
 
 #Gateway & routing config
-vlan_100_IP: 172.16.1.5 255.255.255.224
+vlan_100_IP: 172.16.1.7 255.255.255.224
 router_id: 1.1.1.7
 
 #Platform specific interface config
