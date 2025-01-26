@@ -3,7 +3,7 @@
 hostname: DEV-CORE02
 
 #Gateway & routing config
-vlan_100_IP: 192.168.90.6 255.255.255.224
+vlan_100_IP: 192.168.90.5 255.255.255.224
 router_id: 1.1.2.5
 
 #Platform specific interface config

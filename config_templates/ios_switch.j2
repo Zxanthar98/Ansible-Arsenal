@@ -43,6 +43,9 @@ line vty 5 15
 exec-timeout 35
  transport input ssh
 
+line con 0
+ logging synchronous
+
 no ip http server
 no ip http secure-server
 netconf ssh
