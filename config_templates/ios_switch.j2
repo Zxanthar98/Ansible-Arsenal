@@ -27,7 +27,6 @@ no vlan {{ vlan.id }}
 ip access-list standard VTY-Sec
  10 permit {{ LAN_net }}
  20 permit {{ LAB_net }}
- 30 permit {{ MGMT_net}}
  40 deny any log
 
 interface Vlan100

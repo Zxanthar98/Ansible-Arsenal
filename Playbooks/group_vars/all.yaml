@@ -29,7 +29,7 @@ vlans:
     state: present
 
 #Trusted source networks for VTY-Sec ACL
-LAN_net: 192.168.10.0 0.0.0.31
+LAN_net: 192.168.10.0 0.0.0.255
 LAB_net: 10.10.210.0 0.0.0.255
 MGMT_net: 172.16.1.0 0.0.0.255
 
@@ -41,6 +41,6 @@ vrfs:
     #interfaces:
 
 #Routing protocols
-#ospf:
-# - process_id: "1"
-# - area: "1"
+ospf:
+ - process_id: "1"
+ - area: "1"
