@@ -1,0 +1,8 @@
+---
+#System wide data
+hostname: R01
+
+g.100_IP: 172.16.1.2 255.255.255.0
+
+#Gateway & routing config
+router_id: 1.1.11.2
