@@ -2,5 +2,7 @@
 #System wide data
 hostname: DEV-R01
 
+g.100_IP: 192.168.90.2
+
 #Gateway & routing config
 router_id: 1.1.2.3
