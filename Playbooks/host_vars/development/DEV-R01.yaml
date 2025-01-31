@@ -5,4 +5,4 @@ hostname: DEV-R01
 g.100_IP: 192.168.90.1
 
 #Gateway & routing config
-router_id: 1.1.2.3
+router_id: 1.1.2.1
