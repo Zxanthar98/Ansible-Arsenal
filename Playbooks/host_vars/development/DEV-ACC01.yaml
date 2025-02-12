@@ -19,4 +19,4 @@ interfaces:
         slotid: 0
         portid: 2
         type: Dev
-        description: 'Developers'
+        description: 'Trunk'
