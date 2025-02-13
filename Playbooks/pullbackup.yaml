@@ -12,8 +12,6 @@
       prompt: "Enter your password"
       private: yes
 
-  hosts: "{{hosts}}"
-
   tasks:
 
    - name: Take a backup of the running configuration from hosts and stores in local directory
