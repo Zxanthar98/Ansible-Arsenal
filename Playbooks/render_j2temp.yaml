@@ -32,7 +32,7 @@
         file: "/etc/ansible/Playbooks/group_vars/all.yaml"
 
 
-      ####RENDER JINJA2 TEMPLATE UNTO DEV, and PROD DEVICES####
+      ####RENDER JINJA2 TEMPLATE UNTO DEV, and PROD SWITCHES####
     - name: Render Jinja2 template unto SWITCHES
       cisco.ios.ios_config:
         src: /etc/ansible/config_templates/ios_switch.j2
@@ -44,6 +44,19 @@
         src: /etc/ansible/config_templates/ios_switch.j2
         match: exact
       when: "'DEV-SWITCHES' in group_names"
+
+      ####RENDER JINJA2 TEMPLATE UNTO DEV, and PROD ROUTERS####
+    - name: Render Jinja2 template unto SWITCHES
+      cisco.ios.ios_config:
+        src: /etc/ansible/config_templates/ios_router.j2
+        match: exact
+      when: "'ROUTERS' in group_names"
+
+    - name: Render Jinja2 template unto DEV-SWITCHES 
+      cisco.ios.ios_config:
+        src: /etc/ansible/config_templates/ios_router.j2
+        match: exact
+      when: "'DEV-ROUTERS' in group_names"
 
 
       ####SAVE RUNNING CONFIGURATION TO STARTUP CONFIGURATION####
