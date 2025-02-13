@@ -1,0 +1,39 @@
+---
+- name: Compares running configuration against jinja2 master configuration template
+
+  gather_facts: yes
+
+  vars_prompt:
+    - name: "ansible_user"
+      prompt: "Enter your username"
+      private: no
+
+    - name: "ansible_password"
+      prompt: "Enter your password"
+      private: yes
+
+  hosts: all
+
+  tasks:
+
+      ####LOAD VARIABLES FOR DEV, and PROD ENVIRONMENTS####
+    - name: Include PROD production host variable files
+      include_vars:
+        file: "/etc/ansible/Playbooks/host_vars/production/{{inventory_hostname}}.yaml"
+      when: "'PROD' in group_names"
+
+    - name: Include DEV development host variable files
+      include_vars:
+        file: "/etc/ansible/Playbooks/host_vars/development/{{inventory_hostname}}.yaml"
+      when: "'DEV' in group_names"
+
+    - name: Include group variable files
+      include_vars:
+        file: "/etc/ansible/Playbooks/group_vars/all.yaml"
+
+    - name: Load the running configuration from the device and validate against the intended configuration
+      cisco.ios.ios_config:
+        diff_against: intended
+        intended_config: "/etc/ansible/ios_switch.j2"
+
+  diff: true

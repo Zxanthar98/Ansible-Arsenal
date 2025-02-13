@@ -16,7 +16,7 @@
 
   tasks:
 
-      ####LOAD VARIABLES FOR TEST, DEV, and PROD ENVIRONMENTS####
+      ####LOAD VARIABLES FOR DEV, and PROD ENVIRONMENTS####
     - name: Include PROD production host variable files
       include_vars:
         file: "/etc/ansible/Playbooks/host_vars/production/{{inventory_hostname}}.yaml"
@@ -32,7 +32,7 @@
         file: "/etc/ansible/Playbooks/group_vars/all.yaml"
 
 
-      ####RENDER JINJA2 TEMPLATE UNTO TEST,DEV, and PROD DEVICES####
+      ####RENDER JINJA2 TEMPLATE UNTO DEV, and PROD DEVICES####
     - name: Render Jinja2 template unto SWITCHES
       cisco.ios.ios_config:
         src: /etc/ansible/config_templates/ios_switch.j2
@@ -46,15 +46,8 @@
       when: "'DEV-SWITCHES' in group_names"
 
 
-      ####SAVE RUNNING CONFIGURATION TO STARTUP CONFIGURATION and DIFF the config running on the device vs our golden config####
+      ####SAVE RUNNING CONFIGURATION TO STARTUP CONFIGURATION####
     - name: Save running configuration to startup
       cisco.ios.ios_config:
         save_when: always
   
-    - name: Check the running-config of the devices in the switches group in the hosts inventory file against the master
-      cisco.ios.ios_config:
-        diff_against: intended
-        intended_config: "/etc/ansible/ios_switch.j2"
-      when: "'SWITCHES' in group_names"
-
-  diff: true
