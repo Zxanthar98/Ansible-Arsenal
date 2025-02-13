@@ -31,9 +31,14 @@
       include_vars:
         file: "/etc/ansible/Playbooks/group_vars/all.yaml"
 
-    - name: Load the running configuration from the device and validate against the intended configuration
+    - name: Load the running configuration from the device and validate against the intended configuration against switches
       cisco.ios.ios_config:
         diff_against: intended
         intended_config: "/etc/ansible/ios_switch.j2"
+
+    - name: Load the running configuration from the device and validate against the intended configuration against routers
+      cisco.ios.ios_config:
+        diff_against: intended
+        intended_config: "/etc/ansible/ios_router.j2"
 
   diff: true
