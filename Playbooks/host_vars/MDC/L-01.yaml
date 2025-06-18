@@ -1,6 +1,6 @@
 ---
 #System wide data
-hostname: DEV-ACC01
+hostname: L-01
 
 #Gateway & routing config
 vlan_100_IP: 192.168.90.6 255.255.255.0

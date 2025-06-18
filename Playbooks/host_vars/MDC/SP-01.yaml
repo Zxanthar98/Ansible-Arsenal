@@ -1,10 +1,10 @@
 ---
 #System wide data
-hostname: ACC01
+hostname: SP-01
 
 #Gateway & routing config
-vlan_100_IP: 172.16.1.5 255.255.255.0
-router_id: 1.1.11.5
+vlan_100_IP: 192.168.90.7 255.255.255.0
+router_id: 1.1.2.6
 
 #Platform specific interface config
 interfaces:

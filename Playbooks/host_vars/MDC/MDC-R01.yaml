@@ -1,0 +1,8 @@
+---
+#System wide data
+hostname: MDC-R01
+
+g.100_IP: 192.168.90.1
+
+#Gateway & routing config
+router_id: 1.1.2.1

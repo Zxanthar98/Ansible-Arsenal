@@ -13,19 +13,13 @@ servers:
 #Vlans in LAB network
 vlans:
   - id: 10
-    name: "user_vlan-10"
+    name: "server-vlan-10"
     state: present
   - id: 20
     name: "dev_vlan-20"
     state: present
   - id: 30
-    name: "accounting_vlan-30"
-    state: present
-  - id: 100
-    name: "mgmt_vlan-100"
-    state: present
-  - id: 999
-    name: "native_vlan-999"
+    name: "datavase-vlan-30"
     state: present
 
 #Trusted source networks for VTY-Sec ACL
@@ -37,10 +31,10 @@ domain_name: lab
 
 #VRF configuration
 vrfs:
-  - name: "mgmt"
+  - name: "underlay"
     #interfaces:
 
 #Routing protocols
 ospf:
- - process_id: "1"
- - area: "1"
+ - process_id: "40"
+ - area: "0"
